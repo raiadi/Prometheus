@@ -28,6 +28,8 @@ namespace Prometheus.Factory
             request.AddHeader("x-rapidapi-host", "stock-and-options-trading-data-provider.p.rapidapi.com");
             var queryResult = client.Execute(request);
 
+            System.IO.File.WriteAllText(@"C:\Users\thulu\Desktop\Projects\GitHub\Prometheus\Prometheus\RecievedData\", queryResult.ToString());
+
             //return queryResult;
         }
 
