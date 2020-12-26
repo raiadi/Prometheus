@@ -33,26 +33,30 @@ namespace Prometheus
         {
             debugOutput("Send button clicked");
             
-            var responseObject = apiClient.Get<ListUsers>("", "");
+            var responseObject = apiClient.Get<ListUsers>(txtBxApiEndpoint.Text, "");
 
             // Deserialize and cast to ListUsers class
-            var result = JsonConvert.DeserializeObject<ListUsers>(responseObject.Content);
+            //var result = JsonConvert.DeserializeObject<ListUsers>(responseObject.Content);
+            JObject jObject = JObject.Parse(responseObject.Content);
+            ListUsers result = jObject.ToObject<ListUsers>();
 
             var exportString = "";
 
             if(responseObject != null && responseObject.Content.Contains("data"))
             {
-                var outputPath = @"C:\Users\thulu\Desktop\Projects\GitHub\Prometheus\Prometheus\RecievedData\Result.txt";
+                var outputPath = txtBxOutputFilePath.Text; 
+                //@"C:\Users\thulu\Desktop\Projects\GitHub\Prometheus\Prometheus\RecievedData\Result.txt";
 
                 exportString += "id, email, first_name, last_name, avatar";
 
                 for(var i = 0; i < result.data.Count; i++)
                 {
-                    exportString += result.data[i].id.ToString();
-                    exportString += result.data[i].email.ToString();
-                    exportString += result.data[i].first_name.ToString();
-                    exportString += result.data[i].last_name.ToString();
-                    exportString += result.data[i].avatar.ToString();
+                    exportString += result.data[i].id.ToString() + ",";
+                    exportString += result.data[i].email.ToString() + ",";
+                    exportString += result.data[i].first_name.ToString() + ",";
+                    exportString += result.data[i].last_name.ToString() + ",";
+                    exportString += result.data[i].avatar.ToString() + ",";
+                    exportString += Environment.NewLine;
                 }
 
                 WriteToFile(outputPath, exportString);
@@ -65,12 +69,12 @@ namespace Prometheus
             return true;
         }
 
-        private void debugOutput(string strDefugText)
+        private void debugOutput(string strDebugText)
         {
             try
             {
-                System.Diagnostics.Debug.Write(strDefugText + Environment.NewLine);
-                txtMessage.Text = txtMessage.Text + strDefugText + Environment.NewLine;
+                System.Diagnostics.Debug.Write(strDebugText + Environment.NewLine);
+                txtMessage.Text = txtMessage.Text + strDebugText + Environment.NewLine;
                 txtMessage.SelectionStart = txtMessage.TextLength;
                 txtMessage.ScrollToCaret();
             }

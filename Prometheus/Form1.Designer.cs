@@ -63,6 +63,7 @@ namespace Prometheus
             this.txtBxApiEndpoint.Name = "txtBxApiEndpoint";
             this.txtBxApiEndpoint.Size = new System.Drawing.Size(528, 20);
             this.txtBxApiEndpoint.TabIndex = 1;
+            this.txtBxApiEndpoint.Text = "https://reqres.in/api/users";
             // 
             // label2
             // 
@@ -142,8 +143,10 @@ namespace Prometheus
             // 
             this.txtBxOutputFilePath.Location = new System.Drawing.Point(103, 264);
             this.txtBxOutputFilePath.Name = "txtBxOutputFilePath";
-            this.txtBxOutputFilePath.Size = new System.Drawing.Size(100, 20);
+            this.txtBxOutputFilePath.Size = new System.Drawing.Size(610, 20);
             this.txtBxOutputFilePath.TabIndex = 17;
+            this.txtBxOutputFilePath.Text = "C:\\Users\\thulu\\Desktop\\Projects\\GitHub\\Prometheus\\Prometheus\\RecievedData\\Result." +
+    "txt";
             // 
             // label4
             // 

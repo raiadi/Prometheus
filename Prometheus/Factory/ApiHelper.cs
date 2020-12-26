@@ -20,8 +20,8 @@ namespace Prometheus.Factory
         public IRestResponse<T> Get<T>(string apiEndpoint, string apiHeader)
         {
             //var request = CreateRequest(apiEndpoint, apiHeader);
-            var client = new RestClient("https://reqres.in/");
-            var request = new RestRequest("api/users/2", Method.GET);
+            var client = new RestClient(apiEndpoint);
+            var request = new RestRequest(Method.GET);
 
             request.AddHeader("x-rapidapi-proxy-secret", "a755b180-f5a9-11e9-9f69-7bf51e845926");
             request.AddHeader("X-RapidAPI-Key", "121aa41317msh185b3ed2a2abf01p183d0fjsn20e9ed1e51af");
